@@ -1,6 +1,5 @@
 # Docker image :`openfortivpn`
-Built for personal use.   
-* * *
+> Built for personal use.   
 
 ## Build
 ```bash
