@@ -12,8 +12,8 @@ $ docker build -t openvpn .
 ```bash
 $ docker run -d -ti --name=openfortivpn-client \
    	     --device=/dev/ppp \
-             --cap-add=NET_ADMIN \
- 	     han0495/openvpn
+             --net=host --cap-add=NET_ADMIN \
+ 	     han0495/openvpn:3.0
 ```
    
 ## Reference Original Source
