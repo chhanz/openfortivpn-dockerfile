@@ -1,9 +1,12 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER chhanz <han0495@gmail.com>
+
+ENV DEBIAN_FRONTEND=noninteractive 
 
 # Run upgrades and install recommend package
 RUN apt-get update\
- && apt install -y git gcc automake autoconf libssl-dev make pkg-config ppp
+ && apt install -y git gcc automake autoconf libssl-dev make pkg-config ppp\
+ && apt-get clean
 
 # Install openfortivpn
 RUN cd /tmp\
@@ -14,6 +17,9 @@ RUN cd /tmp\
  && make\
  && make install\
  && rm -rf /tmp/* \
- && rm -rf /var/lib/apt/lists/* 
+ && rm -rf /var/lib/apt/lists/* \
+ && mkdir /script 
 
-ENTRYPOINT ["/bin/bash"]
+ADD startvpn.sh /script
+
+ENTRYPOINT ["/bin/bash", "/script/startvpn.sh"]
